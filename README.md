@@ -1,12 +1,45 @@
-# React + Vite
+# CRUD de Treinos com Autenticação
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este é um projeto de CRUD de treinos com autenticação JWT, desenvolvido com React e Node.js.
 
-Currently, two official plugins are available:
+Componente Curricular: Desenvolvimento FullStack
+Docente: Ariel Menezes
+Discente: Otávio Katibe
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+link do vídeo: 
 
-## Expanding the ESLint configuration
+## Funcionalidades
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Cadastro e login de usuários.
+- Adicionar, editar, excluir e listar treinos.
+- Autenticação com JWT.
+- Rotas protegidas.
+- Feedback visual com `react-toastify`.
+
+## Tecnologias Utilizadas
+
+- React
+- React Router
+- React Hook Form
+- Yup
+- Node.js
+- Express
+- MongoDB
+
+## Como Rodar o Projeto
+
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/seu-usuario/seu-repositorio.git
+
+2. Instale as dependências:
+    ``` bash
+    npm install
+
+3. Configure suas variavéis de ambiente
+    VITE_API_URL
+
+4. Inicie o projeto
+    npm run dev
+
+5. Acesse seu app na url.

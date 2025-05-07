@@ -54,6 +54,32 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #646cff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -64,5 +90,42 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+
+@media (max-width: 768px) {
+  form {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  ul {
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2em;
+  }
+
+  button {
+    font-size: 0.9em;
+    padding: 0.5em 1em;
+  }
+
+  input {
+    font-size: 0.9em;
+    padding: 0.5em;
   }
 }

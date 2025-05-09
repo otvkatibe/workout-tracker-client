@@ -8,19 +8,23 @@ import BackButton from "../components/BackButton";
 
 export default function WorkoutPage() {
   const [workouts, setWorkouts] = useState([]);
-  const [loading, setLoading] = useState(true); // Estado de carregamento
+  const [loading, setLoading] = useState(true);
   const { token } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const fetchWorkouts = async () => {
-    setLoading(true); // Ativar carregamento
+    setLoading(true);
     try {
       const data = await apiRequest(`${import.meta.env.VITE_API_URL}workouts`, "GET", null, token);
-      setWorkouts(data);
+      if (data.length > 0) {
+        setWorkouts(data);
+      } else {
+        toast.info("Nenhum treino encontrado.");
+      }
     } catch (error) {
       toast.error(error.message);
     } finally {
-      setLoading(false); // Desativar carregamento
+      setLoading(false);
     }
   };
 

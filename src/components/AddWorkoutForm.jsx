@@ -36,7 +36,7 @@ export default function AddWorkoutForm({ onWorkoutAdded }) {
 
       if (!response.ok) throw new Error("Erro ao adicionar treino");
       toast.success("Treino adicionado com sucesso!");
-      onWorkoutAdded(); // Notifica o componente pai para atualizar a lista de treinos
+      onWorkoutAdded();
     } catch (error) {
       toast.error(error.message);
     }

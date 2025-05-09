@@ -36,7 +36,9 @@ export default function AddWorkoutForm({ onWorkoutAdded }) {
 
       if (!response.ok) throw new Error("Erro ao adicionar treino");
       toast.success("Treino adicionado com sucesso!");
-      onWorkoutAdded();
+      if (onWorkoutAdded) {
+        onWorkoutAdded();
+      }
     } catch (error) {
       toast.error(error.message);
     }

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { apiRequest } from "../utils/api";
 import Loading from "../components/Loading";
 import BackButton from "../components/BackButton";
+import AddWorkoutForm from "../components/AddWorkoutForm";
 
 export default function WorkoutPage() {
   const [workouts, setWorkouts] = useState([]);
@@ -42,6 +43,7 @@ export default function WorkoutPage() {
     <div>
       <BackButton />
       <h2>Lista de Treinos</h2>
+      <AddWorkoutForm onWorkoutAdded={fetchWorkouts} />
       {workouts.length > 0 ? (
         <ul>
           {workouts.map((workout) => (

@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const schema = yup.object().shape({
   name: yup.string().required("O nome é obrigatório"),
@@ -11,6 +11,7 @@ const schema = yup.object().shape({
 });
 
 export default function Register() {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -28,6 +29,7 @@ export default function Register() {
       });
       if (!response.ok) throw new Error("Erro ao registrar");
       toast.success("Cadastro realizado com sucesso!");
+      navigate("/login");
     } catch (error) {
       toast.error(error.message);
     }

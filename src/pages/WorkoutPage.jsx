@@ -52,12 +52,10 @@ export default function WorkoutPage() {
             </li>
           ))}
         </ul>
-      ) : (
-        <div>
+      )
+        : (
           <p>Nenhum treino encontrado.</p>
-          <button onClick={() => navigate("/add-workout")}>Adicionar Treino</button>
-        </div>
-      )}
+        )}
     </div>
   );
 }

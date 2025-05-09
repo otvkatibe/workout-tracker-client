@@ -1,13 +1,19 @@
 export default function WorkoutList({ workouts, onDelete, onEdit }) {
   return (
-    <ul>
+    <div className="workout-list">
       {workouts.map((workout) => (
-        <li key={workout._id}>
-          <strong>{workout.type}</strong> - {workout.description} ({workout.duration} min)
-          <button onClick={() => onDelete(workout._id)}>Excluir</button>
-          <button onClick={() => onEdit(workout)}>Editar</button>
-        </li>
+        <div className="workout-card" key={workout._id}>
+          <div>
+            <h3>{workout.type || workout.title}</h3>
+            <p>{workout.description}</p>
+            <span>Duração: {workout.duration} min</span>
+          </div>
+          <div className="workout-actions">
+            <button onClick={() => onEdit(workout)}>Editar</button>
+            <button onClick={() => onDelete(workout._id)} className="danger">Excluir</button>
+          </div>
+        </div>
       ))}
-    </ul>
+    </div>
   );
 }

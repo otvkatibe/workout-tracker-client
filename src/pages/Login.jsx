@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useLoading } from "../contexts/LoadingContext";
 
 export default function Login() {
     const [form, setForm] = useState({ email: "", password: "" });
-    const [loading, setLoading] = useState(false);
+    const [saving, setSaving] = useState(false);
     const navigate = useNavigate();
+    const { setLoading } = useLoading();
 
     function handleChange(e) {
         setForm({ ...form, [e.target.name]: e.target.value });
@@ -18,6 +20,7 @@ export default function Login() {
             return;
         }
         setLoading(true);
+        setSaving(true);
         try {
             const res = await fetch(`${import.meta.env.VITE_API_URL}login`, {
                 method: "POST",
@@ -32,6 +35,7 @@ export default function Login() {
         } catch (err) {
             toast.error(err.message);
         } finally {
+            setSaving(false);
             setLoading(false);
         }
     }
@@ -57,8 +61,8 @@ export default function Login() {
                         onChange={handleChange}
                         required
                     />
-                    <button type="submit" disabled={loading} style={{ marginTop: 16 }}>
-                        {loading ? "Entrando..." : "Entrar"}
+                    <button type="submit" style={{ marginTop: 16 }} disabled={saving}>
+                        {saving ? "Entrando..." : "Entrar"}
                     </button>
                     <p style={{ marginTop: 16, textAlign: "center" }}>
                         Não tem conta? <Link to="/register" style={{ color: "#595CFF" }}>Cadastre-se</Link>

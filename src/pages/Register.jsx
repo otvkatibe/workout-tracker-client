@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useLoading } from "../contexts/LoadingContext";
 
 export default function Register() {
     const [form, setForm] = useState({ name: "", email: "", password: "" });
-    const [loading, setLoading] = useState(false);
+    const [saving, setSaving] = useState(false);
     const navigate = useNavigate();
+    const { setLoading } = useLoading();
 
     function handleChange(e) {
         setForm({ ...form, [e.target.name]: e.target.value });
@@ -18,6 +20,7 @@ export default function Register() {
             return;
         }
         setLoading(true);
+        setSaving(true);
         try {
             const res = await fetch(`${import.meta.env.VITE_API_URL}register`, {
                 method: "POST",
@@ -31,6 +34,7 @@ export default function Register() {
         } catch (err) {
             toast.error(err.message);
         } finally {
+            setSaving(false);
             setLoading(false);
         }
     }
@@ -63,7 +67,9 @@ export default function Register() {
                         onChange={handleChange}
                         required
                     />
-                    <button type="submit" disabled={loading}>{loading ? "Cadastrando..." : "Cadastrar"}</button>
+                    <button type="submit" disabled={saving}>
+                        {saving ? "Cadastrando..." : "Cadastrar"}
+                    </button>
                     <p>Já tem conta? <Link to="/login">Entrar</Link></p>
                 </form>
             </div>

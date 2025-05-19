@@ -54,7 +54,7 @@ export default function Workouts() {
             })
             .catch(err => toast.error(getFriendlyErrorMessage(err.message)))
             .finally(() => setLoading(false));
-    }, [token, navigate]);
+    }, [token, navigate, setLoading]);
 
     function handleChange(e) {
         setForm({ ...form, [e.target.name]: e.target.value });
@@ -76,6 +76,7 @@ export default function Workouts() {
             return;
         }
 
+        setLoading(true);
         setSaving(true);
         try {
             if (editing) {
@@ -117,6 +118,7 @@ export default function Workouts() {
             toast.error(getFriendlyErrorMessage(err.message));
         } finally {
             setSaving(false);
+            setLoading(false);
         }
     }
 
@@ -133,6 +135,7 @@ export default function Workouts() {
     async function handleDeleteConfirmed() {
         setModalOpen(false);
         if (!deleteId) return;
+        setLoading(true);
         try {
             const res = await fetch(`${import.meta.env.VITE_API_URL}workouts/${deleteId}`, {
                 method: "DELETE",
@@ -145,13 +148,18 @@ export default function Workouts() {
             toast.error(getFriendlyErrorMessage(err.message));
         } finally {
             setDeleteId(null);
+            setLoading(false);
         }
     }
 
     function handleLogout() {
+        setLoading(true);
         localStorage.removeItem("token");
         toast.success("Logout realizado com sucesso!");
-        navigate("/login");
+        setTimeout(() => {
+            setLoading(false);
+            navigate("/login");
+        }, 500); 
     }
 
     if (loading) return <Loader />;

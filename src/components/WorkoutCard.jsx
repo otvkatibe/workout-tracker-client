@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function WorkoutCard({ workout, onDelete, onEdit }) {
   return (
     <div className="workout-card">
@@ -8,7 +6,7 @@ export default function WorkoutCard({ workout, onDelete, onEdit }) {
       <span>Duração: {workout.duration} min</span>
       <div className="workout-actions">
         <button onClick={() => onEdit(workout)}>Editar</button>
-        <button className="danger" onClick={() => onDelete(workout._id)}>Excluir</button>
+        <button onClick={() => onDelete(workout._id)}>Excluir</button>
       </div>
     </div>
   );

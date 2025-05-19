@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Workouts from "./pages/Workouts";
-import { useLoading } from "./components/LoadingContext";
+import { useLoading } from "./contexts/LoadingContext";
 import Loader from "./components/Loader";
 
 function PrivateRoute({ children }) {

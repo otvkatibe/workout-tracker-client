@@ -1,11 +1,10 @@
-<div align="center">
-  <h1>💪 Workout Tracker</h1>
-  <p>Sistema completo de gerenciamento de treinos com autenticação JWT</p>
-  
-  ![React](https://img.shields.io/badge/React-19.1.0-61dafb?style=for-the-badge&logo=react)
-  ![Vite](https://img.shields.io/badge/Vite-6.3.5-646cff?style=for-the-badge&logo=vite)
-  ![React Router](https://img.shields.io/badge/React_Router-7.6.0-ca4245?style=for-the-badge&logo=react-router)
-</div>
+# 💪 Workout Tracker
+
+Sistema completo de gerenciamento de treinos com autenticação JWT.
+
+![React](https://img.shields.io/badge/React-19.1.0-61dafb?style=for-the-badge&logo=react)
+![Vite](https://img.shields.io/badge/Vite-6.3.5-646cff?style=for-the-badge&logo=vite)
+![React Router](https://img.shields.io/badge/React_Router-7.6.0-ca4245?style=for-the-badge&logo=react-router)
 
 ---
 
@@ -39,16 +38,19 @@
 ## 🛠️ Tecnologias Utilizadas
 
 ### Core
+
 - **[React 19.1.0](https://react.dev/)** - Biblioteca JavaScript para construção de interfaces
 - **[Vite 6.3.5](https://vitejs.dev/)** - Build tool moderna e extremamente rápida
 - **[React Router DOM 7.6.0](https://reactrouter.com/)** - Gerenciamento de rotas
 
 ### Bibliotecas Adicionais
+
 - **[React Toastify 11.0.5](https://fkhadra.github.io/react-toastify/)** - Notificações elegantes e customizáveis
 - **ESLint** - Linter para manutenção de código limpo
 
 ### Backend
-- API RESTful Node.js + Express + MongoDB
+
+- API RESTful Node.js + Express + PostgreSQL
 - Autenticação JWT (JSON Web Token)
 - Hospedado no Vercel
 
@@ -56,7 +58,7 @@
 
 ## 📁 Estrutura do Projeto
 
-```
+```text
 workout-tracker-client/
 ├── src/
 │   ├── components/
@@ -99,21 +101,23 @@ git clone https://github.com/otvkatibe/workout-tracker-client.git
 cd workout-tracker-client
 ```
 
-2. **Instale as dependências**
+1. **Instale as dependências**
 
 ```bash
 npm install
 ```
 
-3. **Configure as variáveis de ambiente**
+1. **Configure as variáveis de ambiente**
 
 Crie um arquivo `.env` na raiz do projeto:
 
 ```env
-VITE_API_URL=https://sua-api-url.com/api/
+VITE_API_URL=https://crud-autenticado-postgresql.vercel.app/
 ```
 
-4. **Execute o projeto em modo de desenvolvimento**
+> **Nota**: A aplicação está conectada ao backend PostgreSQL. Para mais detalhes sobre a migração do MongoDB para PostgreSQL, consulte [MIGRATION_NOTES.md](MIGRATION_NOTES.md).
+
+1. **Execute o projeto em modo de desenvolvimento**
 
 ```bash
 npm run dev
@@ -135,18 +139,21 @@ npm run lint     # Executa o linter
 ## 🎯 Funcionalidades Detalhadas
 
 ### Sistema de Autenticação
+
 - Cadastro com validação de campos
 - Login com geração de token JWT
 - Proteção de rotas privadas
 - Redirecionamento automático baseado no status de autenticação
 
 ### CRUD de Treinos
-- **Create**: Formulário para adicionar novos treinos
-- **Read**: Listagem com cards organizados
+
+- **Create**: Formulário para adicionar novos treinos (nome, descrição, duração e data)
+- **Read**: Listagem com cards organizados mostrando informações completas
 - **Update**: Edição inline sem sair da página
 - **Delete**: Exclusão com confirmação via modal
 
 ### Tratamento de Erros
+
 - Mensagens de erro amigáveis e contextualizadas
 - Validação em tempo real
 - Feedback visual para todas as ações
@@ -200,7 +207,4 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 ---
 
-<div align="center">
-  <p>⭐ Se este projeto te ajudou, considere dar uma estrela!</p>
-</div>
-- O gerenciamento de estado global foi feito com o Context API do React.
+> ⭐ Se este projeto te ajudou, considere dar uma estrela!

@@ -10,62 +10,35 @@ export default function ConfirmModal({ open, onConfirm, onCancel, message }) {
     }, [open]);
 
     if (!open) return null;
-    
+
     return (
-        <div style={{
-            position: "fixed",
-            top: 0, left: 0, right: 0, bottom: 0,
-            background: "rgba(0, 0, 0, 0.75)",
-            backdropFilter: "blur(4px)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 1000,
-            animation: "fadeIn 0.2s ease-out"
-        }} onClick={onCancel}>
-            <div style={{
-                background: "linear-gradient(135deg, #1e293b 0%, #334155 100%)",
-                color: "#f8fafc",
-                padding: "2rem",
-                borderRadius: "16px",
-                minWidth: "360px",
-                maxWidth: "90vw",
-                boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4)",
-                border: "1px solid #475569",
-                textAlign: "center",
-                animation: "slideInUp 0.3s ease-out"
-            }} onClick={(e) => e.stopPropagation()}>
-                <p style={{ 
-                    fontSize: "1.1rem", 
-                    marginBottom: "1.5rem",
-                    lineHeight: "1.6",
-                    color: "#cbd5e1"
-                }}>{message || "Tem certeza?"}</p>
-                <div style={{ display: "flex", gap: "0.75rem" }}>
+        <div
+            className="fixed inset-0 bg-black/75 backdrop-blur-sm flex items-center justify-center z-[1000] animate-[fade-in_0.2s_ease-out]"
+            onClick={onCancel}
+        >
+            <div
+                className="glass-card p-8 min-w-[360px] max-w-[90vw] text-center animate-[slide-up_0.3s_ease-out]"
+                onClick={(e) => e.stopPropagation()}
+            >
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-danger/10 flex items-center justify-center">
+                    <svg className="w-8 h-8 text-danger" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                </div>
+                <p className="text-lg mb-6 leading-relaxed text-text-secondary">
+                    {message || "Tem certeza?"}
+                </p>
+                <div className="flex gap-3">
                     <button
                         ref={cancelBtnRef}
                         onClick={onCancel}
-                        className="secondary"
-                        style={{
-                            flex: 1,
-                            padding: "0.75rem 1.5rem",
-                            borderRadius: "12px",
-                            fontWeight: 600,
-                            fontSize: "1rem"
-                        }}
+                        className="flex-1 py-3 px-6 rounded-xl font-semibold text-base bg-dark-lighter/50 border border-border text-text-secondary transition-all duration-300 hover:bg-dark-lighter hover:text-text-primary"
                     >
                         Cancelar
                     </button>
                     <button
                         onClick={onConfirm}
-                        className="danger"
-                        style={{
-                            flex: 1,
-                            padding: "0.75rem 1.5rem",
-                            borderRadius: "12px",
-                            fontWeight: 600,
-                            fontSize: "1rem"
-                        }}
+                        className="flex-1 py-3 px-6 rounded-xl font-semibold text-base bg-danger text-white transition-all duration-300 hover:bg-danger-hover hover:-translate-y-0.5"
                     >
                         Confirmar
                     </button>

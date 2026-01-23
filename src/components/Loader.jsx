@@ -1,28 +1,10 @@
 export default function Loader() {
   return (
-    <div style={{
-      position: "fixed",
-      top: 0, 
-      left: 0, 
-      width: "100vw", 
-      height: "100vh",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
-      background: "rgba(15, 23, 42, 0.95)",
-      backdropFilter: "blur(8px)",
-      zIndex: 9999,
-      animation: "fadeIn 0.2s ease-out"
-    }}>
-      <div className="spinner" />
-      <p style={{ 
-        color: "#cbd5e1", 
-        marginTop: "1rem",
-        fontSize: "1.1rem",
-        fontWeight: 500,
-        animation: "pulse 1.5s ease-in-out infinite"
-      }}>Carregando...</p>
+    <div className="fixed inset-0 flex flex-col items-center justify-center bg-dark/95 backdrop-blur-lg z-[9999] animate-[fade-in_0.2s_ease-out]">
+      <div className="w-12 h-12 border-4 border-primary/20 border-t-primary rounded-full animate-spin" />
+      <p className="text-text-secondary mt-4 text-lg font-medium animate-pulse">
+        Carregando...
+      </p>
     </div>
   );
 }

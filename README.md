@@ -1,62 +1,67 @@
-<div align="center">
-  <h1>💪 Workout Tracker</h1>
-  <p>Sistema completo de gerenciamento de treinos com autenticação JWT</p>
-  
-  ![React](https://img.shields.io/badge/React-19.1.0-61dafb?style=for-the-badge&logo=react)
-  ![Vite](https://img.shields.io/badge/Vite-6.3.5-646cff?style=for-the-badge&logo=vite)
-  ![React Router](https://img.shields.io/badge/React_Router-7.6.0-ca4245?style=for-the-badge&logo=react-router)
-</div>
+# Workout Tracker
+
+Sistema completo de gerenciamento de treinos com autenticação JWT.
+
+![React](https://img.shields.io/badge/React-19.1.0-61dafb?style=for-the-badge&logo=react)
+![Vite](https://img.shields.io/badge/Vite-6.3.5-646cff?style=for-the-badge&logo=vite)
+![React Router](https://img.shields.io/badge/React_Router-7.12.0-ca4245?style=for-the-badge&logo=react-router)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.1.18-38B2AC?style=for-the-badge&logo=tailwind-css)
 
 ---
 
-## 📋 Sobre o Projeto
+## Sobre o Projeto
 
-**Workout Tracker** é uma aplicação web moderna para gerenciamento de treinos físicos. Desenvolvida com React 19 e Vite, a aplicação oferece uma interface intuitiva e responsiva para usuários criarem, editarem, visualizarem e excluírem seus treinos, com autenticação segura via JWT.
+**Workout Tracker** é uma aplicação web moderna para gerenciamento de treinos físicos. Desenvolvida com React 19, Vite e Tailwind CSS, a aplicação apresenta uma interface **moderna e premium**, utilizando conceitos de **Glassmorphism**, gradientes vibrantes e animações fluidas para criar uma experiência de usuário envolvente e intuitiva, com autenticação segura via JWT.
 
-### ✨ Principais Funcionalidades
+### Principais Funcionalidades
 
-- 🔐 **Autenticação Completa**
+- **Autenticação Completa**
   - Cadastro de novos usuários
   - Login com token JWT
   - Rotas protegidas
   - Logout seguro
 
-- 🏋️ **Gerenciamento de Treinos**
+- **Gerenciamento de Treinos**
   - Criação de treinos com título, descrição e duração
   - Listagem de todos os treinos do usuário
   - Edição inline de treinos existentes
   - Exclusão com modal de confirmação
 
-- 🎨 **Experiência do Usuário**
-  - Interface responsiva (desktop e mobile)
-  - Feedback visual com notificações toast
-  - Loading states para melhor UX
-  - Tratamento de erros amigável
-  - Validação de formulários
+- **Experiência do Usuário (UI/UX)**
+  - Design premium com Glassmorphism
+  - Interface responsiva e fluida (desktop e mobile)
+  - Animações e micro-interações para engajamento
+  - Feedback visual com notificações toast e loaders elegantes
+  - Ícones SVG modernos substituindo emojis
+  - Validação de formulários com feedback imediato
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 ### Core
+
 - **[React 19.1.0](https://react.dev/)** - Biblioteca JavaScript para construção de interfaces
 - **[Vite 6.3.5](https://vitejs.dev/)** - Build tool moderna e extremamente rápida
-- **[React Router DOM 7.6.0](https://reactrouter.com/)** - Gerenciamento de rotas
+- **[Tailwind CSS 4.1.18](https://tailwindcss.com/)** - Framework CSS para estilização moderna e responsiva
+- **[React Router DOM 7.12.0](https://reactrouter.com/)** - Gerenciamento de rotas e navegação
 
 ### Bibliotecas Adicionais
+
 - **[React Toastify 11.0.5](https://fkhadra.github.io/react-toastify/)** - Notificações elegantes e customizáveis
 - **ESLint** - Linter para manutenção de código limpo
 
 ### Backend
+
 - API RESTful Node.js + Express + MongoDB
 - Autenticação JWT (JSON Web Token)
 - Hospedado no Vercel
 
 ---
 
-## 📁 Estrutura do Projeto
+## Estrutura do Projeto
 
-```
+```text
 workout-tracker-client/
 ├── src/
 │   ├── components/
@@ -83,7 +88,7 @@ workout-tracker-client/
 
 ---
 
-## 🚀 Como Executar o Projeto
+## Como Executar o Projeto
 
 ### Pré-requisitos
 
@@ -99,13 +104,13 @@ git clone https://github.com/otvkatibe/workout-tracker-client.git
 cd workout-tracker-client
 ```
 
-2. **Instale as dependências**
+1. **Instale as dependências**
 
 ```bash
 npm install
 ```
 
-3. **Configure as variáveis de ambiente**
+1. **Configure as variáveis de ambiente**
 
 Crie um arquivo `.env` na raiz do projeto:
 
@@ -113,7 +118,7 @@ Crie um arquivo `.env` na raiz do projeto:
 VITE_API_URL=https://sua-api-url.com/api/
 ```
 
-4. **Execute o projeto em modo de desenvolvimento**
+1. **Execute o projeto em modo de desenvolvimento**
 
 ```bash
 npm run dev
@@ -132,40 +137,43 @@ npm run lint     # Executa o linter
 
 ---
 
-## 🎯 Funcionalidades Detalhadas
+## Funcionalidades Detalhadas
 
 ### Sistema de Autenticação
+
 - Cadastro com validação de campos
 - Login com geração de token JWT
 - Proteção de rotas privadas
 - Redirecionamento automático baseado no status de autenticação
 
 ### CRUD de Treinos
+
 - **Create**: Formulário para adicionar novos treinos
 - **Read**: Listagem com cards organizados
 - **Update**: Edição inline sem sair da página
 - **Delete**: Exclusão com confirmação via modal
 
 ### Tratamento de Erros
+
 - Mensagens de erro amigáveis e contextualizadas
 - Validação em tempo real
 - Feedback visual para todas as ações
 
 ---
 
-## 🎨 Padrões e Boas Práticas
+## Padrões e Boas Práticas
 
-- ✅ Componentização e reutilização de código
-- ✅ Context API para gerenciamento de estado global
-- ✅ Custom hooks para lógica compartilhada
-- ✅ Clean Code e nomenclatura semântica
-- ✅ Separação de responsabilidades (components, pages, contexts, hooks)
-- ✅ Validação e tratamento de erros consistente
-- ✅ Design responsivo mobile-first
+- Componentização e reutilização de código
+- Context API para gerenciamento de estado global
+- Custom hooks para lógica compartilhada
+- Clean Code e nomenclatura semântica
+- Separação de responsabilidades (components, pages, contexts, hooks)
+- Validação e tratamento de erros consistente
+- Design responsivo mobile-first
 
 ---
 
-## 🔒 Segurança
+## Segurança
 
 - Autenticação via JWT (JSON Web Token)
 - Token armazenado no localStorage
@@ -175,7 +183,7 @@ npm run lint     # Executa o linter
 
 ---
 
-## 🚧 Melhorias Futuras
+## Melhorias Futuras
 
 - [ ] Implementar paginação na listagem de treinos
 - [ ] Adicionar filtros e busca de treinos
@@ -188,19 +196,18 @@ npm run lint     # Executa o linter
 
 ---
 
-## 👨‍💻 Autor
+## Autor
 
-Desenvolvido com 💙 por **otvkatibe**
+Desenvolvido por **otvkatibe**
 
 ---
 
-## 📄 Licença
+## Licença
 
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
 ---
 
-<div align="center">
-  <p>⭐ Se este projeto te ajudou, considere dar uma estrela!</p>
-</div>
+> Se este projeto te ajudou, considere dar uma estrela!
+
 - O gerenciamento de estado global foi feito com o Context API do React.

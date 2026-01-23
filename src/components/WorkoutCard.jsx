@@ -15,8 +15,8 @@ export default function WorkoutCard({ workout, onDelete, onEdit, style }) {
       style={style}
     >
       <div>
-        <h3 className="text-lg font-bold text-text-primary mb-1">{workout.name}</h3>
-        <p className="text-text-secondary text-sm leading-relaxed">{workout.description}</p>
+        <h3 className="text-lg font-bold text-text-primary mb-1 break-words">{workout.name}</h3>
+        <p className="text-text-secondary text-sm leading-relaxed break-words whitespace-pre-wrap">{workout.description}</p>
       </div>
 
       <div className="flex flex-wrap gap-4 text-sm text-text-muted">

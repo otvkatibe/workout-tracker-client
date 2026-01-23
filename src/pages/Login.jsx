@@ -91,7 +91,7 @@ export default function Login() {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
                         </svg>
                     </div>
-                    <h2 className="text-3xl font-extrabold mb-2 bg-gradient-to-r from-white via-primary-light to-accent bg-clip-text text-transparent">
+                    <h2 className="text-3xl font-extrabold mb-2 text-gradient">
                         Bem-vindo!
                     </h2>
                     <p className="text-text-muted text-sm">
@@ -113,10 +113,7 @@ export default function Login() {
                             value={form.email}
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            className={`w-full pl-12 pr-4 py-4 rounded-xl bg-dark/50 border text-text-primary placeholder-text-muted backdrop-blur-sm transition-all duration-300 focus:outline-none ${errors.email
-                                ? 'border-danger focus:border-danger focus:shadow-[0_0_0_4px_rgba(239,68,68,0.2)]'
-                                : 'border-glass-border focus:border-primary focus:shadow-[0_0_0_4px_var(--color-primary-glow)]'
-                                } focus:-translate-y-0.5`}
+                            className={`input-field pl-12 ${errors.email ? 'input-error' : ''}`}
                             required
                             autoComplete="email"
                         />
@@ -140,10 +137,7 @@ export default function Login() {
                             value={form.password}
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            className={`w-full pl-12 pr-4 py-4 rounded-xl bg-dark/50 border text-text-primary placeholder-text-muted backdrop-blur-sm transition-all duration-300 focus:outline-none ${errors.password
-                                ? 'border-danger focus:border-danger focus:shadow-[0_0_0_4px_rgba(239,68,68,0.2)]'
-                                : 'border-glass-border focus:border-primary focus:shadow-[0_0_0_4px_var(--color-primary-glow)]'
-                                } focus:-translate-y-0.5`}
+                            className={`input-field pl-12 ${errors.password ? 'input-error' : ''}`}
                             required
                             autoComplete="current-password"
                         />
@@ -157,7 +151,7 @@ export default function Login() {
                     <button
                         type="submit"
                         disabled={saving}
-                        className="w-full py-4 px-6 mt-2 text-base font-bold rounded-xl bg-gradient-to-r from-primary to-secondary text-white cursor-pointer transition-all duration-300 hover:shadow-[0_10px_40px_-10px_var(--color-primary-glow)] hover:-translate-y-1 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:hover:shadow-none relative overflow-hidden"
+                        className="btn btn-primary w-full mt-2"
                     >
                         {saving ? (
                             <span className="flex items-center justify-center gap-2">

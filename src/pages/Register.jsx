@@ -92,10 +92,6 @@ export default function Register() {
         }
     }
 
-    const inputBaseClass = "w-full pl-12 pr-4 py-4 rounded-xl bg-dark/50 border text-text-primary placeholder-text-muted backdrop-blur-sm transition-all duration-300 focus:outline-none focus:-translate-y-0.5";
-    const inputNormalClass = `${inputBaseClass} border-glass-border focus:border-primary focus:shadow-[0_0_0_4px_var(--color-primary-glow)]`;
-    const inputErrorClass = `${inputBaseClass} border-danger focus:border-danger focus:shadow-[0_0_0_4px_rgba(239,68,68,0.2)]`;
-
     return (
         <div className="min-h-screen w-full flex items-center justify-center p-6">
             <div className="w-full max-w-md glass-card p-10 animate-[slide-up_0.6s_ease-out]">
@@ -105,7 +101,7 @@ export default function Register() {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
                         </svg>
                     </div>
-                    <h2 className="text-3xl font-extrabold mb-2 bg-gradient-to-r from-white via-primary-light to-accent bg-clip-text text-transparent">
+                    <h2 className="text-3xl font-extrabold mb-2 text-gradient">
                         Criar Conta
                     </h2>
                     <p className="text-text-muted text-sm">
@@ -126,7 +122,7 @@ export default function Register() {
                             value={form.username}
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            className={errors.username ? inputErrorClass : inputNormalClass}
+                            className={`input-field pl-12 ${errors.username ? 'input-error' : ''}`}
                             required
                             autoComplete="username"
                         />
@@ -150,7 +146,7 @@ export default function Register() {
                             value={form.email}
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            className={errors.email ? inputErrorClass : inputNormalClass}
+                            className={`input-field pl-12 ${errors.email ? 'input-error' : ''}`}
                             required
                             autoComplete="email"
                         />
@@ -174,7 +170,7 @@ export default function Register() {
                             value={form.password}
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            className={errors.password ? inputErrorClass : inputNormalClass}
+                            className={`input-field pl-12 ${errors.password ? 'input-error' : ''}`}
                             required
                             autoComplete="new-password"
                             minLength={8}
@@ -189,7 +185,7 @@ export default function Register() {
                     <button
                         type="submit"
                         disabled={saving}
-                        className="w-full py-4 px-6 mt-2 text-base font-bold rounded-xl bg-gradient-to-r from-secondary to-accent text-white cursor-pointer transition-all duration-300 hover:shadow-[0_10px_40px_-10px_rgba(139,92,246,0.5)] hover:-translate-y-1 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:hover:shadow-none relative overflow-hidden"
+                        className="btn btn-primary w-full mt-2"
                     >
                         {saving ? (
                             <span className="flex items-center justify-center gap-2">

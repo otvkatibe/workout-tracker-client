@@ -117,19 +117,24 @@ export function getErrorMessage(error, context = null) {
 export function validateField(name, value, rules = {}) {
   const errors = [];
 
-  if (rules.required && !value?.trim()) {
-    errors.push(`${name} é obrigatório.`);
+  if (rules.required) {
+    const isString = typeof value === 'string';
+    const isEmpty = value === null || value === undefined || (isString && !value.trim());
+
+    if (isEmpty) {
+      errors.push(`${name} é obrigatório.`);
+    }
   }
 
-  if (rules.email && value && !isValidEmail(value)) {
+  if (rules.email && value && !isValidEmail(String(value))) {
     errors.push('Email inválido.');
   }
 
-  if (rules.minLength && value && value.length < rules.minLength) {
+  if (rules.minLength && value && String(value).length < rules.minLength) {
     errors.push(`${name} deve ter no mínimo ${rules.minLength} caracteres.`);
   }
 
-  if (rules.maxLength && value && value.length > rules.maxLength) {
+  if (rules.maxLength && value && String(value).length > rules.maxLength) {
     errors.push(`${name} deve ter no máximo ${rules.maxLength} caracteres.`);
   }
 
@@ -141,7 +146,7 @@ export function validateField(name, value, rules = {}) {
     errors.push(`${name} deve ser no máximo ${rules.max}.`);
   }
 
-  if (rules.pattern && value && !rules.pattern.test(value)) {
+  if (rules.pattern && value && !rules.pattern.test(String(value))) {
     errors.push(rules.patternMessage || `${name} inválido.`);
   }
 
@@ -227,7 +232,7 @@ export async function retryWithBackoff(fn, maxRetries = 3, baseDelay = 1000) {
       return await fn();
     } catch (error) {
       lastError = error;
-      
+
       // Não fazer retry em erros de validação
       if (error.statusCode >= 400 && error.statusCode < 500) {
         throw error;

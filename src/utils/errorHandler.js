@@ -1,6 +1,4 @@
-/**
- * Sistema centralizado de tratamento de erros
- */
+
 
 export class AppError extends Error {
   constructor(message, statusCode, details = null) {
@@ -33,9 +31,7 @@ export class NetworkError extends AppError {
   }
 }
 
-/**
- * Mapeia códigos de status HTTP para mensagens amigáveis
- */
+
 const HTTP_ERROR_MESSAGES = {
   400: 'Dados inválidos. Verifique as informações enviadas.',
   401: 'Sessão expirada. Faça login novamente.',
@@ -50,9 +46,7 @@ const HTTP_ERROR_MESSAGES = {
   503: 'Serviço em manutenção. Tente novamente em breve.',
 };
 
-/**
- * Mensagens de erro específicas por contexto
- */
+
 const CONTEXT_ERROR_MESSAGES = {
   login: {
     401: 'Email ou senha incorretos.',
@@ -69,11 +63,8 @@ const CONTEXT_ERROR_MESSAGES = {
   },
 };
 
-/**
- * Extrai mensagem de erro amigável
- */
+
 export function getErrorMessage(error, context = null) {
-  // Erros de rede
   if (error.name === 'TypeError' && error.message.includes('fetch')) {
     return 'Não foi possível conectar ao servidor. Verifique sua conexão.';
   }
@@ -82,38 +73,30 @@ export function getErrorMessage(error, context = null) {
     return 'Sem conexão com a internet. Verifique sua rede.';
   }
 
-  // Timeout
   if (error.name === 'AbortError') {
     return 'Requisição demorou muito. Tente novamente.';
   }
 
-  // Erro customizado da aplicação
   if (error instanceof AppError) {
     return error.message;
   }
 
-  // Status HTTP com contexto
   if (error.statusCode && context && CONTEXT_ERROR_MESSAGES[context]?.[error.statusCode]) {
     return CONTEXT_ERROR_MESSAGES[context][error.statusCode];
   }
 
-  // Status HTTP genérico
   if (error.statusCode && HTTP_ERROR_MESSAGES[error.statusCode]) {
     return HTTP_ERROR_MESSAGES[error.statusCode];
   }
 
-  // Mensagem do backend
   if (error.message) {
     return error.message;
   }
 
-  // Fallback
   return 'Ocorreu um erro inesperado. Tente novamente.';
 }
 
-/**
- * Valida campos de formulário
- */
+
 export function validateField(name, value, rules = {}) {
   const errors = [];
 
@@ -158,9 +141,7 @@ export function validateField(name, value, rules = {}) {
   return errors;
 }
 
-/**
- * Valida formulário completo
- */
+
 export function validateForm(data, rules) {
   const errors = {};
   let hasErrors = false;
@@ -176,9 +157,7 @@ export function validateForm(data, rules) {
   return { isValid: !hasErrors, errors };
 }
 
-/**
- * Validadores comuns
- */
+
 export function isValidEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
@@ -195,9 +174,7 @@ export function isValidDate(dateString) {
   return date instanceof Date && !isNaN(date);
 }
 
-/**
- * Logger de erros estruturado
- */
+
 export function logError(error, context = {}) {
   const errorLog = {
     timestamp: new Date().toISOString(),
@@ -210,20 +187,9 @@ export function logError(error, context = {}) {
     url: window.location.href,
   };
 
-  // Em produção, enviar para serviço de monitoramento
-  if (process.env.NODE_ENV === 'production') {
-    // Exemplo: Sentry, LogRocket, etc.
-    console.error('Error Log:', errorLog);
-  } else {
-    console.error('Error:', errorLog);
-  }
-
   return errorLog;
 }
 
-/**
- * Retry com backoff exponencial
- */
 export async function retryWithBackoff(fn, maxRetries = 3, baseDelay = 1000) {
   let lastError;
 

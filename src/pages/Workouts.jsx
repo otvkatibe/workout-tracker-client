@@ -93,7 +93,7 @@ export default function Workouts() {
                 const data = await put(
                     `${import.meta.env.VITE_API_URL}workouts/${editing}`,
                     workoutData,
-                    { Authorization: `Bearer ${token}` },
+                    { headers: { Authorization: `Bearer ${token}` } },
                     'workout'
                 );
                 setWorkouts(workouts.map(w => w.id === editing ? data : w));
@@ -103,7 +103,7 @@ export default function Workouts() {
                 const data = await post(
                     `${import.meta.env.VITE_API_URL}workouts`,
                     workoutData,
-                    { Authorization: `Bearer ${token}` },
+                    { headers: { Authorization: `Bearer ${token}` } },
                     'workout'
                 );
                 setWorkouts([...workouts, data]);
@@ -130,7 +130,7 @@ export default function Workouts() {
         if (!deleteId) return;
         setLoading(true);
         try {
-            await del(`${import.meta.env.VITE_API_URL}workouts/${deleteId}`, { Authorization: `Bearer ${token}` }, 'workout');
+            await del(`${import.meta.env.VITE_API_URL}workouts/${deleteId}`, { headers: { Authorization: `Bearer ${token}` } }, 'workout');
             setWorkouts(workouts.filter(w => w.id !== deleteId));
             toast.success("Treino excluído!");
         } catch (err) {

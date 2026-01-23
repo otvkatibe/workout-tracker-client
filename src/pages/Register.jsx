@@ -99,7 +99,6 @@ export default function Register() {
     return (
         <div className="min-h-screen w-full flex items-center justify-center p-6">
             <div className="w-full max-w-md glass-card p-10 animate-[slide-up_0.6s_ease-out]">
-                {/* Header */}
                 <div className="text-center mb-8">
                     <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-secondary to-accent flex items-center justify-center shadow-lg animate-[float_3s_ease-in-out_infinite]">
                         <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -115,7 +114,6 @@ export default function Register() {
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-5">
-                    {/* Username field */}
                     <div className="relative group">
                         <div className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted group-focus-within:text-primary transition-colors">
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -139,7 +137,6 @@ export default function Register() {
                         )}
                     </div>
 
-                    {/* Email field */}
                     <div className="relative group">
                         <div className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted group-focus-within:text-primary transition-colors">
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -164,7 +161,6 @@ export default function Register() {
                         )}
                     </div>
 
-                    {/* Password field */}
                     <div className="relative group">
                         <div className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted group-focus-within:text-primary transition-colors">
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -190,7 +186,6 @@ export default function Register() {
                         )}
                     </div>
 
-                    {/* Submit button */}
                     <button
                         type="submit"
                         disabled={saving}
@@ -212,14 +207,12 @@ export default function Register() {
                     </button>
                 </form>
 
-                {/* Divider */}
                 <div className="flex items-center gap-4 my-8">
                     <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
                     <span className="text-text-muted text-sm">ou</span>
                     <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
                 </div>
 
-                {/* Login link */}
                 <p className="text-center text-text-secondary">
                     Já tem conta?{" "}
                     <Link to="/login" className="font-bold hover:underline">

@@ -151,174 +151,191 @@ export default function Workouts() {
 
     if (loading) return <Loader />;
 
-    const inputBase = "w-full px-4 py-3.5 rounded-xl bg-dark/50 border text-text-primary placeholder-text-muted backdrop-blur-sm transition-all duration-300 focus:outline-none focus:-translate-y-0.5";
-    const inputNormal = `${inputBase} border-glass-border focus:border-primary focus:shadow-[0_0_0_4px_var(--color-primary-glow)]`;
-    const inputError = `${inputBase} border-danger focus:border-danger`;
-
     return (
-        <div className="min-h-screen w-full flex flex-col items-center pt-6 pb-12 px-4 animate-[fade-in_0.5s_ease-out]">
-            {/* Header */}
-            <header className="w-full max-w-6xl flex items-center justify-between mb-8 px-2">
-                <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg">
+        <div className="min-h-screen w-full flex flex-col items-center pt-8 pb-12 px-4 animate-fade-in">
+            <header className="w-full max-w-5xl flex items-center justify-between mb-10 px-2">
+                <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center shadow-lg shadow-violet-500/20">
                         <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
                         </svg>
                     </div>
                     <div>
-                        <h1 className="text-2xl font-bold bg-gradient-to-r from-white to-primary-light bg-clip-text text-transparent">
+                        <h1 className="text-3xl font-bold text-gradient tracking-tight">
                             Workout Tracker
                         </h1>
-                        <p className="text-text-muted text-sm">{workouts.length} treino{workouts.length !== 1 && 's'}</p>
+                        <p className="text-text-muted text-sm font-medium tracking-wide">
+                            {workouts.length} {workouts.length !== 1 ? 'treinos registrados' : 'treino registrado'}
+                        </p>
                     </div>
                 </div>
                 <button
                     onClick={handleLogout}
-                    className="flex items-center gap-2 py-2.5 px-5 text-sm font-semibold rounded-xl bg-danger/10 border border-danger/30 text-danger transition-all duration-300 hover:bg-danger hover:border-danger hover:text-white hover:-translate-y-0.5"
+                    className="btn btn-danger text-sm py-2 px-4 shadow-none"
                 >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                     </svg>
                     Sair
                 </button>
             </header>
 
-            {/* Form Card */}
-            <div className="w-full max-w-lg glass-card p-8 mb-10 animate-[slide-up_0.5s_ease-out]">
-                <h3 className="text-xl font-bold text-center mb-6 flex items-center justify-center gap-2">
-                    {editing ? (
-                        <>
-                            <svg className="w-6 h-6 text-primary-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                            </svg>
-                            Editar Treino
-                        </>
-                    ) : (
-                        <>
-                            <svg className="w-6 h-6 text-primary-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                            </svg>
-                            Novo Treino
-                        </>
-                    )}
-                </h3>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                    <div>
-                        <input
-                            name="name"
-                            placeholder="Nome do treino"
-                            value={form.name}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            className={errors.name ? inputError : inputNormal}
-                            required
-                        />
-                        {errors.name && <span className="block text-danger text-sm mt-1.5 pl-1">{errors.name}</span>}
-                    </div>
+            <div className="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-8 items-start">
 
-                    <div>
-                        <textarea
-                            name="description"
-                            placeholder="Descrição do treino..."
-                            value={form.description}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            className={`${errors.description ? inputError : inputNormal} resize-none min-h-[100px]`}
-                            required
-                            rows={3}
-                        />
-                        {errors.description && <span className="block text-danger text-sm mt-1.5 pl-1">{errors.description}</span>}
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-4">
-                        <div>
-                            <input
-                                name="duration"
-                                type="number"
-                                placeholder="Duração (min)"
-                                value={form.duration}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                className={errors.duration ? inputError : inputNormal}
-                                required
-                                min="1"
-                            />
-                            {errors.duration && <span className="block text-danger text-sm mt-1.5 pl-1">{errors.duration}</span>}
-                        </div>
-                        <div>
-                            <input
-                                name="date"
-                                type="date"
-                                value={form.date}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                className={`${errors.date ? inputError : inputNormal} color-scheme-dark`}
-                                required
-                            />
-                            {errors.date && <span className="block text-danger text-sm mt-1.5 pl-1">{errors.date}</span>}
-                        </div>
-                    </div>
-
-                    <div className="flex gap-3 pt-2">
-                        <button
-                            type="submit"
-                            disabled={saving}
-                            className="flex-1 py-3.5 px-6 font-bold rounded-xl bg-gradient-to-r from-primary to-secondary text-white transition-all duration-300 hover:shadow-[0_10px_40px_-10px_var(--color-primary-glow)] hover:-translate-y-1 disabled:opacity-50 disabled:transform-none"
-                        >
-                            {saving ? "Salvando..." : (editing ? "Salvar alterações" : "Adicionar treino")}
-                        </button>
-                        {editing && (
-                            <button
-                                type="button"
-                                onClick={handleCancelEdit}
-                                className="py-3.5 px-6 font-semibold rounded-xl bg-dark-lighter/50 border border-border text-text-secondary transition-all duration-300 hover:bg-dark-lighter hover:text-text-primary"
-                            >
-                                Cancelar
-                            </button>
+                <div className="order-2 lg:order-1 glass-card p-6 sticky top-8">
+                    <h3 className="text-lg font-bold mb-6 flex items-center gap-2 text-text-main border-b border-white/5 pb-4">
+                        {editing ? (
+                            <>
+                                <svg className="w-5 h-5 text-primary-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                </svg>
+                                Editar Treino
+                            </>
+                        ) : (
+                            <>
+                                <svg className="w-5 h-5 text-primary-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                                </svg>
+                                Novo Treino
+                            </>
                         )}
-                    </div>
-                </form>
-            </div>
+                    </h3>
 
-            {/* Workouts Grid */}
-            <div className="w-full max-w-6xl">
-                <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                    <svg className="w-7 h-7 text-primary-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                    </svg>
-                    Seus Treinos
-                </h2>
-
-                {workouts.length === 0 ? (
-                    <div className="glass-card p-12 text-center animate-[fade-scale_0.5s_ease-out]">
-                        <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-dark-lighter flex items-center justify-center animate-[float_3s_ease-in-out_infinite]">
-                            <svg className="w-8 h-8 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                            </svg>
-                        </div>
-                        <h3 className="text-xl font-bold text-text-primary mb-2">Nenhum treino ainda</h3>
-                        <p className="text-text-muted">Adicione seu primeiro treino usando o formulário acima!</p>
-                    </div>
-                ) : (
-                    <div className="grid gap-6" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))' }}>
-                        {workouts.map((w, i) => (
-                            <WorkoutCard
-                                key={w.id}
-                                workout={w}
-                                onDelete={() => { setDeleteId(w.id); setModalOpen(true); }}
-                                onEdit={handleEditClick}
-                                style={{ animationDelay: `${i * 0.1}s` }}
+                    <form onSubmit={handleSubmit} className="space-y-5">
+                        <div className="space-y-1">
+                            <label className="text-xs font-semibold text-text-secondary uppercase tracking-wider ml-1">Nome</label>
+                            <input
+                                name="name"
+                                placeholder="Ex: Treino de Peito"
+                                value={form.name}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                className={`input-field ${errors.name ? 'input-error' : ''}`}
+                                required
                             />
-                        ))}
+                            {errors.name && <span className="text-danger text-xs font-medium ml-1 block">{errors.name}</span>}
+                        </div>
+
+                        <div className="space-y-1">
+                            <label className="text-xs font-semibold text-text-secondary uppercase tracking-wider ml-1">Descrição</label>
+                            <textarea
+                                name="description"
+                                placeholder="Detalhes dos exercícios..."
+                                value={form.description}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                className={`input-field min-h-[120px] resize-none ${errors.description ? 'input-error' : ''}`}
+                                required
+                            />
+                            {errors.description && <span className="text-danger text-xs font-medium ml-1 block">{errors.description}</span>}
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-4">
+                            <div className="space-y-1">
+                                <label className="text-xs font-semibold text-text-secondary uppercase tracking-wider ml-1">Duração</label>
+                                <div className="relative">
+                                    <input
+                                        name="duration"
+                                        type="number"
+                                        placeholder="0"
+                                        value={form.duration}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        className={`input-field pr-12 ${errors.duration ? 'input-error' : ''}`}
+                                        required
+                                        min="1"
+                                    />
+                                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-text-muted text-sm">min</span>
+                                </div>
+                                {errors.duration && <span className="text-danger text-xs font-medium ml-1 block">{errors.duration}</span>}
+                            </div>
+                            <div className="space-y-1">
+                                <label className="text-xs font-semibold text-text-secondary uppercase tracking-wider ml-1">Data</label>
+                                <input
+                                    name="date"
+                                    type="date"
+                                    value={form.date}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    className={`input-field ${errors.date ? 'input-error' : ''}`}
+                                    required
+                                />
+                                {errors.date && <span className="text-danger text-xs font-medium ml-1 block">{errors.date}</span>}
+                            </div>
+                        </div>
+
+                        <div className="pt-4 flex gap-3">
+                            {editing && (
+                                <button
+                                    type="button"
+                                    onClick={handleCancelEdit}
+                                    className="btn btn-secondary flex-1"
+                                >
+                                    Cancelar
+                                </button>
+                            )}
+                            <button
+                                type="submit"
+                                disabled={saving}
+                                className="btn btn-primary flex-[2] text-white shadow-lg shadow-violet-500/25"
+                            >
+                                {saving ? (
+                                    <span className="flex items-center gap-2">
+                                        <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"></circle>
+                                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                        </svg>
+                                        Salvando...
+                                    </span>
+                                ) : (
+                                    editing ? "Salvar Alterações" : "Adicionar Treino"
+                                )}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div className="order-1 lg:order-2 w-full">
+                    <div className="flex items-center justify-between mb-6">
+                        <h2 className="text-xl font-bold text-white flex items-center gap-2">
+                            <span className="w-8 h-1 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-full block"></span>
+                            Seus Treinos
+                        </h2>
                     </div>
-                )}
+
+                    {workouts.length === 0 ? (
+                        <div className="glass-card p-16 text-center border-dashed border-2 border-white/10">
+                            <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-white/5 flex items-center justify-center">
+                                <svg className="w-10 h-10 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                                </svg>
+                            </div>
+                            <h3 className="text-xl font-bold text-white mb-2">Comece sua jornada!</h3>
+                            <p className="text-text-muted max-w-xs mx-auto leading-relaxed">
+                                Parece que você ainda não registrou nenhum treino. Use o formulário ao lado para começar.
+                            </p>
+                        </div>
+                    ) : (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 auto-rows-fr">
+                            {workouts.map((w, i) => (
+                                <WorkoutCard
+                                    key={w.id}
+                                    workout={w}
+                                    onDelete={() => { setDeleteId(w.id); setModalOpen(true); }}
+                                    onEdit={handleEditClick}
+                                    style={{ animationDelay: `${i * 0.05}s` }}
+                                />
+                            ))}
+                        </div>
+                    )}
+                </div>
             </div>
 
             <ConfirmModal
                 open={modalOpen}
                 onConfirm={handleDeleteConfirmed}
                 onCancel={() => { setModalOpen(false); setDeleteId(null); }}
-                message="Deseja realmente excluir este treino?"
+                message="Tem certeza que deseja excluir este treino?"
             />
         </div>
     );

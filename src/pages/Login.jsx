@@ -68,6 +68,7 @@ export default function Login() {
                 throw new Error('Token não recebido');
             }
         } catch (err) {
+            console.error("Error Log:", JSON.stringify(err, null, 2));
             toast.error(err.message);
 
             if (err.message.toLowerCase().includes('email')) {
@@ -115,8 +116,8 @@ export default function Login() {
                             onChange={handleChange}
                             onBlur={handleBlur}
                             className={`w-full pl-12 pr-4 py-4 rounded-xl bg-dark/50 border text-text-primary placeholder-text-muted backdrop-blur-sm transition-all duration-300 focus:outline-none ${errors.email
-                                    ? 'border-danger focus:border-danger focus:shadow-[0_0_0_4px_rgba(239,68,68,0.2)]'
-                                    : 'border-glass-border focus:border-primary focus:shadow-[0_0_0_4px_var(--color-primary-glow)]'
+                                ? 'border-danger focus:border-danger focus:shadow-[0_0_0_4px_rgba(239,68,68,0.2)]'
+                                : 'border-glass-border focus:border-primary focus:shadow-[0_0_0_4px_var(--color-primary-glow)]'
                                 } focus:-translate-y-0.5`}
                             required
                             autoComplete="email"
@@ -143,8 +144,8 @@ export default function Login() {
                             onChange={handleChange}
                             onBlur={handleBlur}
                             className={`w-full pl-12 pr-4 py-4 rounded-xl bg-dark/50 border text-text-primary placeholder-text-muted backdrop-blur-sm transition-all duration-300 focus:outline-none ${errors.password
-                                    ? 'border-danger focus:border-danger focus:shadow-[0_0_0_4px_rgba(239,68,68,0.2)]'
-                                    : 'border-glass-border focus:border-primary focus:shadow-[0_0_0_4px_var(--color-primary-glow)]'
+                                ? 'border-danger focus:border-danger focus:shadow-[0_0_0_4px_rgba(239,68,68,0.2)]'
+                                : 'border-glass-border focus:border-primary focus:shadow-[0_0_0_4px_var(--color-primary-glow)]'
                                 } focus:-translate-y-0.5`}
                             required
                             autoComplete="current-password"

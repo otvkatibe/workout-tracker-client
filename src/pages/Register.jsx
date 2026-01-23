@@ -76,6 +76,7 @@ export default function Register() {
             toast.success("Conta criada com sucesso! Faça login.");
             navigate("/login");
         } catch (err) {
+            console.error("Error Log:", JSON.stringify(err, null, 2));
             toast.error(err.message);
 
             if (err.message.toLowerCase().includes('username') || err.message.toLowerCase().includes('usuário')) {

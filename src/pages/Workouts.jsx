@@ -112,6 +112,7 @@ export default function Workouts() {
             setForm({ name: "", description: "", duration: "", date: "" });
             setErrors({});
         } catch (err) {
+            console.error("Error Log:", JSON.stringify(err, null, 2));
             toast.error(err.message);
         } finally {
             setSaving(false);
@@ -134,6 +135,7 @@ export default function Workouts() {
             setWorkouts(workouts.filter(w => w.id !== deleteId));
             toast.success("Treino excluído!");
         } catch (err) {
+            console.error("Error Log:", JSON.stringify(err, null, 2));
             toast.error(err.message);
         } finally {
             setDeleteId(null);

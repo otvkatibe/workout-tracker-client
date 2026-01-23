@@ -1,9 +1,1 @@
-/* App.css - Estilos globais já estão em index.css */
-
-#root {
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+/* App.css - mantido apenas para compatibilidade, estilos migraram para index.css + Tailwind */

@@ -2,9 +2,7 @@ import { useState, useCallback } from 'react';
 import { toast } from 'react-toastify';
 import { getErrorMessage, logError, NetworkError, AuthenticationError } from '../utils/errorHandler';
 
-/**
- * Hook customizado para chamadas de API com tratamento robusto de erros
- */
+
 export function useApi() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -17,7 +15,6 @@ export function useApi() {
     const timeoutId = setTimeout(() => controller.abort(), 30000); // 30s timeout
 
     try {
-      // Verificar conexão
       if (!navigator.onLine) {
         throw new NetworkError();
       }
@@ -40,7 +37,6 @@ export function useApi() {
         error.statusCode = response.status;
         error.data = data;
 
-        // Token expirado
         if (response.status === 401) {
           localStorage.removeItem('token');
           throw new AuthenticationError(data.message || 'Sessão expirada. Faça login novamente.');
@@ -53,15 +49,13 @@ export function useApi() {
     } catch (err) {
       clearTimeout(timeoutId);
 
-      // Tratar erro de abort como timeout
       if (err.name === 'AbortError') {
         err.message = 'Requisição demorou muito. Tente novamente.';
       }
 
       const errorMessage = getErrorMessage(err, context);
       setError(errorMessage);
-      
-      // Log estruturado
+
       logError(err, { url, method: options.method, context });
 
       throw new Error(errorMessage);
@@ -97,9 +91,7 @@ export function useApi() {
   return { request, get, post, put, del, loading, error };
 }
 
-/**
- * Hook para operações com feedback automático
- */
+
 export function useApiWithToast() {
   const api = useApi();
 

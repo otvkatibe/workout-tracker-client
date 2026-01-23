@@ -1,5 +1,3 @@
-
-
 export class AppError extends Error {
   constructor(message, statusCode, details = null) {
     super(message);
@@ -199,7 +197,6 @@ export async function retryWithBackoff(fn, maxRetries = 3, baseDelay = 1000) {
     } catch (error) {
       lastError = error;
 
-      // Não fazer retry em erros de validação
       if (error.statusCode >= 400 && error.statusCode < 500) {
         throw error;
       }

@@ -1,6 +1,3 @@
-/**
- * Componente para exibir erros de forma amigável ao usuário
- */
 export default function ErrorDisplay({
     error,
     title = "Ops! Algo deu errado",
@@ -32,9 +29,7 @@ export default function ErrorDisplay({
     );
 }
 
-/**
- * Componente para exibir estado vazio
- */
+
 export function EmptyState({
     title = "Nenhum item encontrado",
     description = "Comece adicionando seu primeiro item!",
@@ -62,11 +57,9 @@ export function EmptyState({
     );
 }
 
-/**
- * Componente de alerta inline para formulários
- */
+
 export function AlertMessage({
-    type = "error", // error, warning, success, info 
+    type = "error",
     message,
     onDismiss = null
 }) {
